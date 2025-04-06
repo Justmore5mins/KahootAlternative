@@ -2,7 +2,7 @@ function createGame() {
   
     const pin = Math.floor(100000 + Math.random() * 900000);
   
-    fetch("http://notfound.local/addPin", {
+    fetch(`http://${location.hostname}/api/addPin`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

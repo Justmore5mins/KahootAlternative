@@ -1,4 +1,4 @@
-const url = "http://localhost/getPlayerData"
+const url = `http://${location.hostname}/api/getPlayerData`
 
 window.onload = function(){
     const username = document.getElementById("username").value;

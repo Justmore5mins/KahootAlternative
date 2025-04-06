@@ -1,4 +1,4 @@
-const api = "http://notfound.local/getValidPins"
+const api = `http://${location.hostname}/api/getValidPins`
 
 function joinGame(){
     const gamePIN = Number(document.getElementById("gamePinPlayer").value);
@@ -7,10 +7,11 @@ function joinGame(){
     .then(data => {
         for(const item of data){
             if(item === gamePIN){
-                console.log(true)
+                location.href = `http://${location.hostname}/games/normalPlayer.html`
                 return;
             }
         }
-        console.log(false)
+        alert("PIN not exist")
     })
 }
+

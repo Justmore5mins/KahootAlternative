@@ -2,7 +2,7 @@
  window.onload = function() {
     const pin = localStorage.getItem('gamePin');
     //document.getElementById('pin').textContent = pin ? pin : '未生成 PIN';
-    fetch("http://notfound.local/getValidPins")
+    fetch("http://notfound.local/api/getValidPins")
     .then(res => res.json())
     .then(data => {
       document.getElementById("pin").innerHTML = data[0]
@@ -27,48 +27,24 @@
       return;
     }
 
-    // 儲存題目
-    const question = {
-      question: questionText,
-      options: [option1, option2, option3, option4],
-      correctAnswer: correctAnswer
-    };
-
-    // 加入到題目陣列
-    questions.push(question);
-
-    // 更新題目列表
-    updateQuestionList();
-
-    // 清空輸入欄位
-    document.getElementById('question').value = '';
-    document.getElementById('option1').value = '';
-    document.getElementById('option2').value = '';
-    document.getElementById('option3').value = '';
-    document.getElementById('option4').value = '';
-    document.getElementById('correct-answer').value = '';
+    fetch(`http://${location.hostname}/api/addQuestion`, {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+        "question": questionText,
+        "options": [option1, option2, option3, option4],
+        "correctAnswer": correctAnswer
+      })
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("questionList").innerHTML = `題目:${questionText}|答案:${correctAnswer}`
+  })
+  .catch(err => console.log(`Error: ${err}`))
   }
 
-  // 更新題目列表顯示
-  function updateQuestionList() {
-    const questionList = document.getElementById('questionList');
-    questionList.innerHTML = '';
-
-    questions.forEach((q, index) => {
-      const li = document.createElement('li');
-      li.textContent = `題目: ${q.question} | 正確答案: ${q.correctAnswer}`;
-      questionList.appendChild(li);
-    });
-  }
-
-  // 開始遊戲功能（可以進行遊戲邏輯）
-  function startGame() {
-    // 將題目儲存在 LocalStorage 或傳送至後端
-    localStorage.setItem('gameQuestions', JSON.stringify(questions));
-
-    // 提示開始遊戲
-    alert("遊戲開始！");
-  }
-  function startGame(){
-    window.location.href="/games/index.html";
-  }
+function startGame(){
+  location.href = `http://${location.hostname}/games/normalPlayer.html`
+}

@@ -1,0 +1,11 @@
+{
+    "alex":{
+        "password":"password"
+    },
+    "ken":{
+        "password":"asdfghjkl;'"
+    },
+    "jacky":{
+        "password":"qwertyuiop[]"
+    }
+}

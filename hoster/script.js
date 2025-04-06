@@ -2,8 +2,17 @@ function createGame() {
   
     const pin = Math.floor(100000 + Math.random() * 900000);
   
-    localStorage.setItem('gamePin', pin);
+    fetch("http://notfound.local/addPin", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({ pin })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(`Error: ${err}`))
     
  
-    window.location.href = "SettingGame.html";
+    location.href = "SettingGame.html";
 }

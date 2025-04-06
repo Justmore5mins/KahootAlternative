@@ -2,14 +2,32 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>遊戲設定</title>
   <link rel="stylesheet" href="settingGames.css">
-  <script src="Setting.js"></script>
+  <script src="SettingGame.js"></script>
+  <title>遊戲設定</title>
 </head>
 <body>
   <h1>🎯 遊戲設定</h1>
   <div>你的遊戲 PIN 碼：</div>
   <div id="pin"></div>
+  <div class="question-section">
+    <h2>設定題目與選項</h2>
+    <input type="text" id="question" class="question-input" placeholder="輸入題目..." />
+    <br />
+    <input type="text" id="option1" class="option-input" placeholder="選項 1" />
+    <input type="text" id="option2" class="option-input" placeholder="選項 2" />
+    <input type="text" id="option3" class="option-input" placeholder="選項 3" />
+    <input type="text" id="option4" class="option-input" placeholder="選項 4" />
+    <br />
+    <input type="text" id="correct-answer" class="option-input" placeholder="正確答案" />
+    <br />
+    <button onclick="addQuestion()">加入題目</button>
+  </div>
+
+  <div class="question-list">
+    <h2>已加入的題目</h2>
+    <ul id="questionList"></ul>
+  </div>
   <button onclick="startGame()">開始遊戲</button>
 </body>
 </html>

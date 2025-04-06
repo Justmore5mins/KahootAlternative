@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>遊戲進行中</title>
+  <link rel="stylesheet" href="games.css">
+  <script src="games.js"></script>
+</head>
+<body>
+  <h1>🎮 遊戲進行中</h1>
+  <div id="question">題目會顯示在這裡</div>
+  <div class="options">
+    <button class="option-button" onclick="submitAnswer(0)">選項 1</button>
+    <button class="option-button" onclick="submitAnswer(1)">選項 2</button>
+    <button class="option-button" onclick="submitAnswer(2)">選項 3</button>
+    <button class="option-button" onclick="submitAnswer(3)">選項 4</button>
+  </div>
+  <div id="result"></div>
+  <button id="next-button" onclick="nextQuestion()">下一題</button>
+</body>
+</html>
